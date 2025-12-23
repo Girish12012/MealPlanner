@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriPlan AI - Futuristic Indian Meal Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="bg-animation">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
+        <div class="bg-circle circle-4"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon animate__animated animate__pulse animate__infinite">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>NutriPlan<span class="ai-text">AI</span></h1>
+                        <p class="tagline">Intelligent Indian Meal Planning</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <nav>
+                        <ul>
+                            <li><a href="#home" class="nav-link active">
+                                <i class="fas fa-home"></i>
+                                <span>Home</span>
+                            </a></li>
+                            <li><a href="#form" class="nav-link">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Create Plan</span>
+                            </a></li>
+                            <li><a href="#plan" class="nav-link">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Meal Plan</span>
+                            </a></li>
+                        </ul>
+                    </nav>
+                    
+                    <a href="#download" id="download-link" class="nav-link download-btn" style="display: none;">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                        <span class="download-pulse"></span>
+                    </a>
+                    
+                    <div class="theme-toggle">
+                        <button id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text animate__animated animate__fadeInLeft">
+                    <h2 class="hero-title">
+                        <span class="gradient-text">Smart Indian Meal Plans</span>
+                        <br>For Your Health Goals
+                    </h2>
+                    <p class="hero-subtitle">AI-powered personalized 7-day Indian meal plans based on your body type, dietary preferences, and health conditions.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>100+</h3>
+                                <p>Indian Recipes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>6</h3>
+                                <p>Health Conditions</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Instant</h3>
+                                <p>Plan Generation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#form" class="btn-primary animate__animated animate__pulse animate__infinite">
+                        <i class="fas fa-magic"></i>
+                        Create Your Free Plan
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                
+                <div class="hero-visual animate__animated animate__fadeInRight">
+                    <div class="food-illustration">
+                        <div class="food-item roti animate-float">
+                            <i class="fas fa-bread-slice"></i>
+                        </div>
+                        <div class="food-item dal animate-float-delay">
+                            <i class="fas fa-mortar-pestle"></i>
+                        </div>
+                        <div class="food-item vegetable animate-float-delay-2">
+                            <i class="fas fa-carrot"></i>
+                        </div>
+                    </div>
+                    <div class="pulse-ring"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Input Form -->
+    <section class="section" id="form">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-highlight">Create Your</span>
+                    Personalized Profile
+                </h2>
+                <p class="section-subtitle">Fill in your details to generate an AI-powered Indian meal plan</p>
+                <div class="progress-indicator">
+                    <div class="progress-step active" id="step1">
+                        <div class="step-number">1</div>
+                        <span>Personal Info</span>
+                    </div>
+                    <div class="progress-step" id="step2">
+                        <div class="step-number">2</div>
+                        <span>Health Details</span>
+                    </div>
+                    <div class="progress-step" id="step3">
+                        <div class="step-number">3</div>
+                        <span>Generate Plan</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-wrapper glass-card">
+                <form id="mealPlanForm">
+                    <div class="form-tabs">
+                        <button type="button" class="form-tab active" data-tab="personal">
+                            <i class="fas fa-user"></i>
+                            Personal Details
+                        </button>
+                        <button type="button" class="form-tab" data-tab="health">
+                            <i class="fas fa-heartbeat"></i>
+                            Health & Goals
+                        </button>
+                    </div>
+                    
+                    <div class="form-content">
+                        <!-- Personal Details Tab -->
+                        <div class="form-tab-content active" id="personal-tab">
+                            <div class="form-grid">
+                                <div class="input-group floating-label">
+                                    <input type="text" id="name" required>
+                                    <label for="name">Full Name</label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="gender">Gender</label>
+                                    <div class="select-wrapper">
+                                        <select id="gender" required>
+                                            <option value="" disabled selected>Select gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <div class="select-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group floating-label">
+                                    <input type="number" id="age" min="18" max="80" required>
+                                    <label for="age">Age</label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-birthday-cake"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group floating-label">
+                                    <input type="number" id="height" min="100" max="250" required>
+                                    <label for="height">Height (cm)</label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-ruler-vertical"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group floating-label">
+                                    <input type="number" id="weight" min="30" max="200" required>
+                                    <label for="weight">Weight (kg)</label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-weight"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="dietPreference">Dietary Preference</label>
+                                    <div class="select-wrapper">
+                                        <select id="dietPreference" required>
+                                            <option value="" disabled selected>Select preference</option>
+                                            <option value="vegetarian">Vegetarian 🥦</option>
+                                            <option value="non-vegetarian">Non-Vegetarian 🍗</option>
+                                            <option value="vegan">Vegan 🌱</option>
+                                        </select>
+                                        <div class="select-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Health & Goals Tab -->
+                        <div class="form-tab-content" id="health-tab">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="bodyType">Body Type Goal</label>
+                                    <div class="goal-buttons">
+                                        <button type="button" class="goal-btn" data-value="lean">
+                                            <i class="fas fa-running"></i>
+                                            <span>Lean & Toned</span>
+                                        </button>
+                                        <button type="button" class="goal-btn" data-value="muscular">
+                                            <i class="fas fa-dumbbell"></i>
+                                            <span>Muscular</span>
+                                        </button>
+                                        <button type="button" class="goal-btn" data-value="fat-loss">
+                                            <i class="fas fa-weight"></i>
+                                            <span>Fat Loss</span>
+                                        </button>
+                                        <button type="button" class="goal-btn" data-value="athletic">
+                                            <i class="fas fa-bolt"></i>
+                                            <span>Athletic</span>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" id="bodyType" required>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="fitnessGoal">Fitness Goal</label>
+                                    <div class="goal-cards">
+                                        <div class="goal-card" data-goal="weight-loss">
+                                            <div class="goal-card-icon">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div class="goal-card-content">
+                                                <h4>Weight Loss</h4>
+                                                <p>Reduce body fat, calorie deficit</p>
+                                            </div>
+                                            <div class="goal-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card" data-goal="bulking">
+                                            <div class="goal-card-icon">
+                                                <i class="fas fa-dumbbell"></i>
+                                            </div>
+                                            <div class="goal-card-content">
+                                                <h4>Bulking</h4>
+                                                <p>Gain muscle mass</p>
+                                            </div>
+                                            <div class="goal-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card" data-goal="maintenance">
+                                            <div class="goal-card-icon">
+                                                <i class="fas fa-balance-scale"></i>
+                                            </div>
+                                            <div class="goal-card-content">
+                                                <h4>Maintenance</h4>
+                                                <p>Maintain current weight</p>
+                                            </div>
+                                            <div class="goal-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="fitnessGoal" required>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label>Health Conditions</label>
+                                    <div class="health-tags">
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="diabetes">
+                                            <div class="tag-content">
+                                                <i class="fas fa-syringe"></i>
+                                                <span>Diabetes</span>
+                                            </div>
+                                        </label>
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="hypertension">
+                                            <div class="tag-content">
+                                                <i class="fas fa-heartbeat"></i>
+                                                <span>High BP</span>
+                                            </div>
+                                        </label>
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="thyroid">
+                                            <div class="tag-content">
+                                                <i class="fas fa-leaf"></i>
+                                                <span>Thyroid</span>
+                                            </div>
+                                        </label>
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="cholesterol">
+                                            <div class="tag-content">
+                                                <i class="fas fa-tint"></i>
+                                                <span>Cholesterol</span>
+                                            </div>
+                                        </label>
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="pcos">
+                                            <div class="tag-content">
+                                                <i class="fas fa-female"></i>
+                                                <span>PCOS</span>
+                                            </div>
+                                        </label>
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="heart">
+                                            <div class="tag-content">
+                                                <i class="fas fa-heart"></i>
+                                                <span>Heart Health</span>
+                                            </div>
+                                        </label>
+                                        <label class="health-tag">
+                                            <input type="checkbox" name="healthCondition" value="none">
+                                            <div class="tag-content">
+                                                <i class="fas fa-check"></i>
+                                                <span>None</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="activityLevel">Activity Level</label>
+                                    <div class="select-wrapper">
+                                        <select id="activityLevel" required>
+                                            <option value="" disabled selected>Select activity level</option>
+                                            <option value="sedentary">Sedentary (Little exercise)</option>
+                                            <option value="light">Lightly active</option>
+                                            <option value="moderate">Moderately active</option>
+                                            <option value="very">Very active</option>
+                                            <option value="extra">Extra active</option>
+                                        </select>
+                                        <div class="select-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="foodAllergies">Food Allergies (Optional)</label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="foodAllergies" placeholder="List any food allergies or intolerances..."></textarea>
+                                        <div class="textarea-icon">
+                                            <i class="fas fa-allergies"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="prevTab" style="display: none;">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button type="button" class="btn-secondary" id="nextTab">
+                            Next
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" class="btn-primary" id="submitBtn" style="display: none;">
+                            <i class="fas fa-brain"></i>
+                            Generate AI Meal Plan
+                            <span class="loading-dots" style="display: none;">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Plan Display -->
+    <section class="section" id="plan" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-highlight">Your Personalized</span>
+                    7-Day Indian Meal Plan
+                </h2>
+                <p class="section-subtitle">AI-generated meal plan with Indian recipes tailored to your goals</p>
+            </div>
+
+            <!-- User Summary -->
+            <div class="user-summary glass-card" id="userSummary">
+                <div class="summary-header">
+                    <h3>Profile Summary</h3>
+                    <div class="summary-actions">
+                        <button class="btn-icon" id="editProfile" onclick="window.location.href='#form'">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="summary-grid" id="summaryGrid">
+                    <!-- Content will be filled by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Weekly Plan -->
+            <div class="weekly-plan" id="weeklyPlan">
+                <!-- Content will be filled by JavaScript -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons" style="text-align: center; margin-top: 40px;">
+                <button class="btn-secondary" onclick="window.location.href='#form'">
+                    <i class="fas fa-redo"></i>
+                    Edit Profile
+                </button>
+                <button class="btn-primary" id="downloadPdfBtn">
+                    <i class="fas fa-file-pdf"></i>
+                    Download PDF Report
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Dashboard -->
+    <section class="section" id="nutrition" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-highlight">Nutrition</span>
+                    Analytics Dashboard
+                </h2>
+                <p class="section-subtitle">Detailed breakdown of your daily nutrition intake</p>
+            </div>
+
+            <div class="nutrition-dashboard">
+                <div class="dashboard-card glass-card">
+                    <h3>Daily Calorie Progress</h3>
+                    <div class="calorie-progress">
+                        <div class="progress-circle">
+                            <svg class="progress-ring" width="220" height="220">
+                                <defs>
+                                    <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#4CAF50" />
+                                        <stop offset="100%" stop-color="#8D6E63" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="progress-ring-bg" cx="110" cy="110" r="95" stroke-width="10"></circle>
+                                <circle class="progress-ring-fill" cx="110" cy="110" r="95" stroke-width="10" stroke-dasharray="597" stroke-dashoffset="597"></circle>
+                            </svg>
+                            <div class="progress-text">
+                                <span class="progress-value" id="calorieValue">0</span>
+                                <span class="progress-label">kcal / day</span>
+                            </div>
+                        </div>
+                        <div class="calorie-info">
+                            <div class="calorie-item">
+                                <span class="calorie-label">Goal</span>
+                                <span class="calorie-amount" id="calorieGoalDisplay">2000</span>
+                            </div>
+                            <div class="calorie-item">
+                                <span class="calorie-label">Consumed</span>
+                                <span class="calorie-amount" id="calorieConsumed">0</span>
+                            </div>
+                            <div class="calorie-item">
+                                <span class="calorie-label">Remaining</span>
+                                <span class="calorie-amount" id="calorieRemaining">2000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card glass-card">
+                    <h3>Macronutrient Distribution</h3>
+                    <div class="macros-chart">
+                        <div class="macros-legend">
+                            <div class="legend-item protein">
+                                <div class="legend-color"></div>
+                                <span>Protein</span>
+                                <span class="legend-value">
+                                    <span id="proteinValue">0g</span>
+                                    <span id="proteinPercent">(0%)</span>
+                                </span>
+                            </div>
+                            <div class="legend-item carbs">
+                                <div class="legend-color"></div>
+                                <span>Carbs</span>
+                                <span class="legend-value">
+                                    <span id="carbsValue">0g</span>
+                                    <span id="carbsPercent">(0%)</span>
+                                </span>
+                            </div>
+                            <div class="legend-item fats">
+                                <div class="legend-color"></div>
+                                <span>Fats</span>
+                                <span class="legend-value">
+                                    <span id="fatsValue">0g</span>
+                                    <span id="fatsPercent">(0%)</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="macros-doughnut">
+                            <canvas id="macrosChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card glass-card">
+                    <h3>Weekly Nutrition Summary</h3>
+                    <div class="nutrition-summary" id="nutritionSummary">
+                        <div class="nutrition-card">
+                            <i class="fas fa-fire"></i>
+                            <h3>Daily Calories</h3>
+                            <div class="value">0</div>
+                            <div class="unit">kcal</div>
+                        </div>
+                        <div class="nutrition-card">
+                            <i class="fas fa-drumstick-bite"></i>
+                            <h3>Protein</h3>
+                            <div class="value">0</div>
+                            <div class="unit">grams</div>
+                        </div>
+                        <div class="nutrition-card">
+                            <i class="fas fa-bread-slice"></i>
+                            <h3>Carbohydrates</h3>
+                            <div class="value">0</div>
+                            <div class="unit">grams</div>
+                        </div>
+                        <div class="nutrition-card">
+                            <i class="fas fa-oil-can"></i>
+                            <h3>Fats</h3>
+                            <div class="value">0</div>
+                            <div class="unit">grams</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-utensils"></i>
+                        <h3>NutriPlan<span class="ai-text">AI</span></h3>
+                    </div>
+                    <p>AI-powered Indian meal planning for better health and fitness.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><i class="fas fa-home"></i> <a href="#home">Home</a></li>
+                        <li><i class="fas fa-user-plus"></i> <a href="#form">Create Plan</a></li>
+                        <li><i class="fas fa-calendar-alt"></i> <a href="#plan">Meal Plan</a></li>
+                        <li><i class="fas fa-chart-bar"></i> <a href="#nutrition">Nutrition</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@nutriplan.ai</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Bangalore, India</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Download App</h4>
+                    <div class="app-download">
+                        <button class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>Google Play</span>
+                        </button>
+                        <button class="app-btn">
+                            <i class="fab fa-app-store"></i>
+                            <span>App Store</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NutriPlan AI. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="mealData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
